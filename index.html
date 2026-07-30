@@ -299,8 +299,12 @@
       <input id="campo-nombre" type="text" placeholder="Nombre y apellido" autocomplete="name" />
     </label>
     <label class="campo">
-      <span class="campo-etiqueta">¿Cuántos asistirán?</span>
+      <span class="campo-etiqueta">¿Cuántos adultos asistirán?</span>
       <select id="campo-personas"></select>
+    </label>
+    <label class="campo">
+      <span class="campo-etiqueta">¿Cuántos niños los acompañan?</span>
+      <select id="campo-ninos"></select>
     </label>
     <p class="aviso" id="aviso-nombre" hidden>Escríbenos tu nombre para saber quién confirma.</p>
     <button class="boton boton-primario" id="btn-confirmar" type="button">
@@ -367,12 +371,19 @@
   /* Confirmación por WhatsApp */
   const campoNombre = document.getElementById("campo-nombre");
   const campoPersonas = document.getElementById("campo-personas");
+  const campoNinos = document.getElementById("campo-ninos");
   const avisoNombre = document.getElementById("aviso-nombre");
   for (let n = 1; n <= 8; n++) {
     const o = document.createElement("option");
     o.value = n;
-    o.textContent = n === 1 ? "1 persona" : n + " personas";
+    o.textContent = n === 1 ? "1 adulto" : n + " adultos";
     campoPersonas.appendChild(o);
+  }
+  for (let n = 0; n <= 8; n++) {
+    const o = document.createElement("option");
+    o.value = n;
+    o.textContent = n === 0 ? "Sin niños" : n === 1 ? "1 niño" : n + " niños";
+    campoNinos.appendChild(o);
   }
 
   const abrirWhatsApp = (mensaje) => {
@@ -384,7 +395,11 @@
     if (!nombre) { avisoNombre.hidden = false; campoNombre.focus(); return; }
     avisoNombre.hidden = true;
     const n = Number(campoPersonas.value);
-    const cuantos = n === 1 ? "Asistiré solo yo (1 persona)." : "Asistiremos " + n + " personas.";
+    const k = Number(campoNinos.value);
+    const adultos = n === 1 ? "1 adulto" : n + " adultos";
+    const cuantos = k === 0
+      ? (n === 1 ? "Asistiré solo yo (1 adulto, sin niños)." : "Asistiremos " + adultos + ", sin niños.")
+      : "Asistiremos " + adultos + " y " + (k === 1 ? "1 niño" : k + " niños") + ".";
     abrirWhatsApp(
       "Hola, soy " + nombre + ". Con mucho gusto confirmo mi asistencia " +
       EVENTO.frase + " " + EVENTO.fechaMensaje + ". " + cuantos
