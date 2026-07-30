@@ -38,9 +38,8 @@
   }
 
   /* ============================================================
-     Paleta tomada de la invitación impresa: tarjeta marfil en arco
-     sobre sobre rosa, oro, frambuesa, oliva y bordado floral.
-     Un solo tema, deliberado: reproduce la papelería física.
+     La invitación es la FOTOGRAFÍA REAL de la papelería; el panel
+     interactivo de abajo toma su paleta: marfil, oro, frambuesa.
      ============================================================ */
   :root {
     --sobre:      #F2C4CB;
@@ -66,75 +65,88 @@
     font-family: var(--sans);
     color: var(--tinta);
     min-height: 100vh;
-    padding: 1.5rem 0.9rem 2.5rem;
+    padding: 1.1rem 0.9rem 2.5rem;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
   }
 
-  /* --- Tarjeta en arco ------------------------------------------ */
-  .tarjeta {
-    position: relative;
-    overflow: hidden;
-    max-width: 26rem;
+  .pagina {
+    max-width: 28rem;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  /* --- Fotografía real de la invitación ------------------------- */
+  .foto {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 16px 40px rgba(90, 40, 55, 0.30);
+  }
+
+  /* --- Panel interactivo ---------------------------------------- */
+  .panel {
+    position: relative;
     background: var(--marfil);
-    border-radius: 12rem 12rem 10px 10px;
-    box-shadow: 0 18px 45px rgba(90, 40, 55, 0.28);
-    padding: 4.75rem 1.9rem 4.75rem;
-    box-sizing: border-box;
+    border-radius: 14px;
+    box-shadow: 0 16px 40px rgba(90, 40, 55, 0.22);
+    padding: 2rem 1.6rem 2.4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 2rem;
+    gap: 1.3rem;
   }
-  .tarjeta::after {
+  .panel::after {
     content: "";
     position: absolute;
-    inset: 11px;
+    inset: 9px;
     border: 1px solid var(--hairline);
-    border-radius: 11.4rem 11.4rem 7px 7px;
+    border-radius: 9px;
     pointer-events: none;
   }
-  .tarjeta > * { position: relative; z-index: 1; }
+  .panel > * { position: relative; z-index: 1; }
 
-  /* --- Bordado floral (decorativo) ------------------------------ */
-  .decor { position: absolute; pointer-events: none; z-index: 0 !important; }
-  .decor-abajo-izq { left: -52px; bottom: -52px; width: 172px; }
-  .decor-abajo-der { right: -26px; bottom: -20px; width: 92px; }
-
-  /* --- Encabezado ----------------------------------------------- */
-  .cruz { color: var(--oro-claro); }
-  .encabezado { display: flex; flex-direction: column; align-items: center; gap: 0.9rem; }
-  .ceja {
-    margin: 0;
-    font-size: 0.8rem;
-    letter-spacing: 0.14em;
-    color: var(--frambuesa);
-  }
-  h1 {
-    margin: 0;
-    font-family: var(--script);
-    font-weight: 400;
-    font-size: clamp(3.1rem, 14vw, 4.3rem);
-    line-height: 1.05;
-    color: var(--oro);
-    text-wrap: balance;
-  }
-  .apellidos {
-    margin: 0;
-    font-family: var(--script);
-    font-size: clamp(1.5rem, 6.5vw, 1.9rem);
-    color: var(--frambuesa);
-  }
-  .fecha {
+  .panel h2 {
     margin: 0;
     font-family: var(--serif);
     font-weight: 600;
-    font-size: clamp(1.1rem, 5vw, 1.35rem);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 1.5rem;
     color: var(--frambuesa);
+  }
+  .panel .explica {
+    margin: -0.6rem 0 0;
+    font-size: 0.83rem;
+    line-height: 1.5;
+    color: var(--pardo);
+    max-width: 19rem;
+  }
+
+  /* --- Cómo llegar ---------------------------------------------- */
+  .llegar { width: 100%; display: flex; flex-direction: column; gap: 0.9rem; }
+  .llegar-fila {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.9rem;
+    text-align: left;
+  }
+  .llegar-lugar {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.15rem;
+    line-height: 1.15;
+    color: var(--oliva);
+  }
+  .llegar-sub {
+    margin: 0.15rem 0 0;
+    font-size: 0.76rem;
+    line-height: 1.4;
+    color: var(--pardo);
   }
 
   /* --- Separador punteado con diamante -------------------------- */
@@ -160,35 +172,6 @@
     flex: none;
   }
 
-  /* --- Momentos (ceremonia y recepción) ------------------------- */
-  .momento { display: flex; flex-direction: column; align-items: center; gap: 0.45rem; width: 100%; }
-  .momento-fila {
-    display: flex;
-    align-items: baseline;
-    gap: 0.7rem;
-    font-size: 0.86rem;
-    letter-spacing: 0.06em;
-  }
-  .momento-etiqueta { color: var(--oliva); }
-  .momento-fila .barra { color: var(--oro-claro); }
-  .momento-hora { color: var(--frambuesa); }
-  .momento-lugar {
-    margin: 0;
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: 1.65rem;
-    line-height: 1.15;
-    color: var(--oliva);
-    text-wrap: balance;
-  }
-  .momento-direccion {
-    margin: 0;
-    font-size: 0.85rem;
-    line-height: 1.5;
-    color: var(--pardo);
-    max-width: 19rem;
-  }
-
   /* --- Botones y controles -------------------------------------- */
   .boton {
     display: inline-flex;
@@ -206,9 +189,9 @@
   .boton svg { flex: none; }
 
   .boton-mapa {
-    margin-top: 0.45rem;
+    flex: none;
     min-height: 2.5rem;
-    padding: 0.3rem 1.1rem;
+    padding: 0.3rem 1rem;
     border-radius: 999px;
     border: 1px solid var(--hairline);
     background: transparent;
@@ -216,30 +199,10 @@
     font-size: 0.82rem;
     font-weight: 600;
     letter-spacing: 0.04em;
+    white-space: nowrap;
   }
   .boton-mapa:hover { border-color: var(--oro); background: var(--marfil-2); }
 
-  .confirmacion {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.9rem;
-  }
-  .confirmacion h2 {
-    margin: 0;
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: 1.5rem;
-    color: var(--frambuesa);
-  }
-  .confirmacion .explica {
-    margin: -0.3rem 0 0;
-    font-size: 0.83rem;
-    line-height: 1.5;
-    color: var(--pardo);
-    max-width: 19rem;
-  }
   .campo { width: 100%; max-width: 19rem; display: flex; flex-direction: column; gap: 0.3rem; text-align: left; }
   .campo-etiqueta {
     font-size: 0.68rem;
@@ -301,22 +264,11 @@
   }
   .no-asistire:hover, .no-asistire:focus-visible { color: var(--frambuesa); }
 
-  /* --- Papás y padrinos ----------------------------------------- */
-  .familia { display: flex; flex-direction: column; gap: 1.4rem; }
-  .familia h2 {
-    margin: 0 0 0.35rem;
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: 1.25rem;
-    color: var(--frambuesa);
-  }
-  .familia p { margin: 0; font-size: 0.95rem; line-height: 1.75; color: var(--tinta); }
-
   /* --- Animación de entrada ------------------------------------- */
   .revelar {
     opacity: 0;
     animation: subir 0.8s ease forwards;
-    animation-delay: calc(var(--orden, 0) * 0.13s);
+    animation-delay: calc(var(--orden, 0) * 0.15s);
   }
   @keyframes subir {
     from { opacity: 0; transform: translateY(14px); }
@@ -330,84 +282,16 @@
 <body>
 
 
-<!-- Piezas del bordado floral, reutilizadas en los ramilletes -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <g id="petalos8">
-      <ellipse cx="0" cy="-15" rx="6.5" ry="13" />
-      <ellipse cx="0" cy="-15" rx="6.5" ry="13" transform="rotate(45)" />
-      <ellipse cx="0" cy="-15" rx="6.5" ry="13" transform="rotate(90)" />
-      <ellipse cx="0" cy="-15" rx="6.5" ry="13" transform="rotate(135)" />
-      <ellipse cx="0" cy="-15" rx="6.5" ry="13" transform="rotate(180)" />
-      <ellipse cx="0" cy="-15" rx="6.5" ry="13" transform="rotate(225)" />
-      <ellipse cx="0" cy="-15" rx="6.5" ry="13" transform="rotate(270)" />
-      <ellipse cx="0" cy="-15" rx="6.5" ry="13" transform="rotate(315)" />
-    </g>
-    <g id="flor-rosa">
-      <use href="#petalos8" fill="#C22E6B" />
-      <g fill="#DE8A2E">
-        <ellipse cx="0" cy="-8" rx="3.5" ry="7" transform="rotate(30)" />
-        <ellipse cx="0" cy="-8" rx="3.5" ry="7" transform="rotate(90)" />
-        <ellipse cx="0" cy="-8" rx="3.5" ry="7" transform="rotate(150)" />
-        <ellipse cx="0" cy="-8" rx="3.5" ry="7" transform="rotate(210)" />
-        <ellipse cx="0" cy="-8" rx="3.5" ry="7" transform="rotate(270)" />
-        <ellipse cx="0" cy="-8" rx="3.5" ry="7" transform="rotate(330)" />
-      </g>
-      <circle r="3.6" fill="#EACF7C" />
-    </g>
-    <g id="flor-azul">
-      <g fill="#2E7F8A">
-        <ellipse cx="0" cy="-9" rx="4" ry="8.5" />
-        <ellipse cx="0" cy="-9" rx="4" ry="8.5" transform="rotate(60)" />
-        <ellipse cx="0" cy="-9" rx="4" ry="8.5" transform="rotate(120)" />
-        <ellipse cx="0" cy="-9" rx="4" ry="8.5" transform="rotate(180)" />
-        <ellipse cx="0" cy="-9" rx="4" ry="8.5" transform="rotate(240)" />
-        <ellipse cx="0" cy="-9" rx="4" ry="8.5" transform="rotate(300)" />
-      </g>
-      <circle r="3" fill="#DE8A2E" />
-    </g>
-    <g id="hoja"><ellipse cx="0" cy="-11" rx="4.2" ry="11" fill="#6E7A2E" /></g>
-  </defs>
-</svg>
+<main class="pagina">
+  <img class="foto revelar" style="--orden: 0" src="foto.jpg"
+       alt="Invitación al bautizo de Ivanna Eliette Lavín Cabrera. Sábado 29 de agosto. Ceremonia religiosa a las 12 del día en la Parroquia de Santo Tomás, Xochimilco. Recepción a las 2:30 en el Salón la Ermita, Carretera Monte Albán #126, San Juan Chapultepec. Papás: Hilda Cabrera Domínguez y Fernando Lavín Duarte. Padrinos: Beatriz Hernández Suárez y Juan Carlos Ruiz Ayala." />
 
-<main class="tarjeta">
-  <svg class="decor decor-abajo-izq" viewBox="0 0 180 180" aria-hidden="true">
-    <use href="#hoja" transform="translate(98,62) rotate(35) scale(1.7)" />
-    <use href="#hoja" transform="translate(38,48) rotate(-30) scale(1.5)" />
-    <use href="#hoja" transform="translate(128,116) rotate(80) scale(1.5)" />
-    <use href="#hoja" transform="translate(60,150) rotate(-100) scale(1.3)" />
-    <use href="#flor-rosa" transform="translate(64,100) scale(2.3)" />
-    <use href="#flor-azul" transform="translate(133,74) scale(1.35)" />
-    <use href="#flor-azul" transform="translate(34,145) scale(1.1)" />
-  </svg>
-  <svg class="decor decor-abajo-der" viewBox="0 0 100 100" aria-hidden="true">
-    <use href="#hoja" transform="translate(52,66) rotate(120) scale(1.1)" />
-    <use href="#flor-azul" transform="translate(70,50) scale(1.1)" />
-    <use href="#flor-rosa" transform="translate(88,84) scale(1.0)" />
-  </svg>
+  <section class="panel revelar" style="--orden: 1">
+    <h2>¿Cómo llegar?</h2>
+    <div class="llegar" id="llegar"></div>
 
-  <header class="encabezado revelar" style="--orden: 0">
-    <svg class="cruz" width="26" height="34" viewBox="0 0 26 34" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true">
-      <path d="M13 3v28 M4 12h18" />
-    </svg>
-    <p class="ceja" id="ceja"></p>
-    <h1 id="nombre-evento"></h1>
-    <p class="apellidos" id="apellidos"></p>
-  </header>
+    <div class="separador" aria-hidden="true"><span class="diamante"></span></div>
 
-  <div class="separador revelar" style="--orden: 1" aria-hidden="true"><span class="diamante"></span></div>
-
-  <p class="fecha revelar" id="fecha" style="--orden: 2"></p>
-
-  <div class="revelar" id="momentos" style="--orden: 3; display: flex; flex-direction: column; gap: 1.9rem; width: 100%;"></div>
-
-  <div class="separador revelar" style="--orden: 4" aria-hidden="true"><span class="diamante"></span></div>
-
-  <section class="familia revelar" id="familia" style="--orden: 5"></section>
-
-  <div class="separador revelar" style="--orden: 6" aria-hidden="true"><span class="diamante"></span></div>
-
-  <section class="confirmacion revelar" style="--orden: 7">
     <h2>Confirma tu asistencia</h2>
     <p class="explica">Tu confirmación nos llega directo por WhatsApp; así sabremos a quién esperar con cariño.</p>
     <label class="campo">
@@ -437,74 +321,47 @@
      país y sin signos. México celular: 521 + 10 dígitos.
      ============================================================== */
   const EVENTO = {
-    ceja:         "Acompáñanos a celebrar el bautizo de nuestra hija",
-    nombre:       "Ivanna Eliette",
-    apellidos:    "Lavín Cabrera",
-    fecha:        "Sábado 29 de agosto",
-    fechaMensaje: "el sábado 29 de agosto",
     frase:        "al bautizo de Ivanna Eliette",
+    fechaMensaje: "el sábado 29 de agosto",
     momentos: [
       {
-        etiqueta:  "Ceremonia religiosa",
-        hora:      "12 del día",
-        lugar:     "Parroquia de Santo Tomás",
-        direccion: "Barrio de Xochimilco, Oaxaca de Juárez",
-        mapa:      "Parroquia de Santo Tomás, Xochimilco, Oaxaca de Juárez, Oaxaca"
+        lugar: "Parroquia de Santo Tomás",
+        sub:   "Ceremonia religiosa · 12 del día · Barrio de Xochimilco",
+        mapa:  "Parroquia de Santo Tomás, Xochimilco, Oaxaca de Juárez, Oaxaca"
       },
       {
-        etiqueta:  "Recepción",
-        hora:      "2:30 de la tarde",
-        lugar:     "Salón la Ermita",
-        direccion: "Carretera Monte Albán #126, San Juan Chapultepec",
-        mapa:      "17.051311,-96.736430"
+        lugar: "Salón la Ermita",
+        sub:   "Recepción · 2:30 de la tarde · Carretera Monte Albán #126",
+        mapa:  "17.051311,-96.736430"
       }
-    ],
-    familia: [
-      { titulo: "Mis papás",    nombres: ["Hilda Cabrera Domínguez", "Fernando Lavín Duarte"] },
-      { titulo: "Mis padrinos", nombres: ["Beatriz Hernández Suárez", "Juan Carlos Ruiz Ayala"] }
     ],
     whatsapp: "5219512283887"
   };
 
-  document.title = "Invitación · " + EVENTO.nombre + " " + EVENTO.apellidos;
-  const pon = (id, texto) => { document.getElementById(id).textContent = texto; };
-  pon("ceja", EVENTO.ceja);
-  pon("nombre-evento", EVENTO.nombre);
-  pon("apellidos", EVENTO.apellidos);
-  pon("fecha", EVENTO.fecha);
-
-  /* Momentos del día, cada uno con su botón de Google Maps */
-  const contMomentos = document.getElementById("momentos");
+  /* Filas de "Cómo llegar", cada una con su botón de Google Maps */
+  const contLlegar = document.getElementById("llegar");
   for (const m of EVENTO.momentos) {
-    const s = document.createElement("section");
-    s.className = "momento";
-    s.innerHTML =
-      '<div class="momento-fila"><span class="momento-etiqueta"></span>' +
-      '<span class="barra">|</span><span class="momento-hora"></span></div>' +
-      '<p class="momento-lugar"></p><p class="momento-direccion"></p>' +
-      '<a class="boton boton-mapa" target="_blank" rel="noopener">' +
+    const fila = document.createElement("div");
+    fila.className = "llegar-fila";
+    const info = document.createElement("div");
+    const lugar = document.createElement("p");
+    lugar.className = "llegar-lugar";
+    lugar.textContent = m.lugar;
+    const sub = document.createElement("p");
+    sub.className = "llegar-sub";
+    sub.textContent = m.sub;
+    info.append(lugar, sub);
+    const a = document.createElement("a");
+    a.className = "boton boton-mapa";
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(m.mapa);
+    a.innerHTML =
       '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
       '<path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>' +
-      "Cómo llegar</a>";
-    s.querySelector(".momento-etiqueta").textContent = m.etiqueta;
-    s.querySelector(".momento-hora").textContent = m.hora;
-    s.querySelector(".momento-lugar").textContent = m.lugar;
-    s.querySelector(".momento-direccion").textContent = m.direccion;
-    s.querySelector("a").href =
-      "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(m.mapa);
-    contMomentos.appendChild(s);
-  }
-
-  /* Papás y padrinos */
-  const contFamilia = document.getElementById("familia");
-  for (const g of EVENTO.familia) {
-    const d = document.createElement("div");
-    const h = document.createElement("h2");
-    h.textContent = g.titulo;
-    const p = document.createElement("p");
-    p.append(...g.nombres.flatMap((n, i) => i ? [document.createElement("br"), n] : [n]));
-    d.append(h, p);
-    contFamilia.appendChild(d);
+      "Cómo llegar";
+    fila.append(info, a);
+    contLlegar.appendChild(fila);
   }
 
   /* Confirmación por WhatsApp */
