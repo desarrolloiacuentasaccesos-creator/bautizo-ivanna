@@ -149,6 +149,35 @@
     color: var(--pardo);
   }
 
+  /* --- Código de vestimenta ------------------------------------- */
+  .vestimenta-titulo {
+    margin: -0.6rem 0 0;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: var(--oliva);
+  }
+  .vestimenta {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2.4rem;
+  }
+  .vestimenta-quien {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--frambuesa);
+  }
+  .vestimenta-detalle {
+    margin: 0.15rem 0 0;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--pardo);
+    max-width: 9.5rem;
+  }
+
   /* --- Separador punteado con diamante -------------------------- */
   .separador {
     width: min(14rem, 72%);
@@ -289,6 +318,22 @@
   <section class="panel revelar" style="--orden: 1">
     <h2>¿Cómo llegar?</h2>
     <div class="llegar" id="llegar"></div>
+
+    <div class="separador" aria-hidden="true"><span class="diamante"></span></div>
+
+    <h2>Código de vestimenta</h2>
+    <p class="vestimenta-titulo">Riguroso istmeño</p>
+    <div class="vestimenta">
+      <div>
+        <p class="vestimenta-quien">Hombres</p>
+        <p class="vestimenta-detalle">Guayabera</p>
+      </div>
+      <div>
+        <p class="vestimenta-quien">Mujeres</p>
+        <p class="vestimenta-detalle">Traje regional y su jicalpestle</p>
+      </div>
+    </div>
+    <p class="explica">Si vienes de otro estado o nos visitas de fuera, ven como te sientas más a gusto.</p>
 
     <div class="separador" aria-hidden="true"><span class="diamante"></span></div>
 
