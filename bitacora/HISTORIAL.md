@@ -24,3 +24,12 @@ Registro fechado del proceso. Documentos en español.
   `.vestimenta-detalle`) reutilizan la paleta y tipografías ya incrustadas.
 - Se creó la carpeta `bitacora/` con los tres documentos vivos.
 - Estado actual: página publicada en GitHub Pages; confirmaciones llegando por WhatsApp.
+
+## 2026-08-01 — Sincronización de archivos fuente (bucle de mejora continua)
+- La sección de vestimenta se había agregado solo aquí (`index.html`); los archivos
+  fuente de `C:\Proyectos\invitacion-evento` quedaron atrás. Se sincronizaron
+  (`invitacion.html` e `invitacion.template.html`) para que regenerar desde la
+  plantilla no pierda la sección.
+- Verificado en vivo: link corto 301 correcto, página HTTP 200 idéntica byte a byte a
+  este repositorio, harness de 35 asserts en verde. **El `index.html` publicado no
+  cambió** — los invitados no notan nada.
