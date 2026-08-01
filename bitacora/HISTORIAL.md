@@ -33,3 +33,11 @@ Registro fechado del proceso. Documentos en español.
 - Verificado en vivo: link corto 301 correcto, página HTTP 200 idéntica byte a byte a
   este repositorio, harness de 35 asserts en verde. **El `index.html` publicado no
   cambió** — los invitados no notan nada.
+
+## 2026-08-01 — Corrección del código de vestimenta (pedido del usuario)
+- El título pasa de "Riguroso istmeño" a **"Traje típico istmeño"** y se elimina el
+  jicalpestle: mujeres queda solo **"Traje regional"**. Hombres sigue "Guayabera" y la
+  nota para invitados de fuera queda intacta.
+- Cambio aplicado idéntico a los TRES archivos (este `index.html` + los dos fuente de
+  `invitacion-evento`), harness de 37 asserts en verde en los tres, y verificación en
+  vivo tras el push. El link enviado por WhatsApp no cambia.
