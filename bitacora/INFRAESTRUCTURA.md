@@ -26,14 +26,34 @@ base de datos, variables de entorno ni colas: es una página estática.
   `https://desarrolloiacuentasaccesos-creator.github.io/bautizo-ivanna/portada.png`
   (WhatsApp cachea la vista previa; cambiarla no se refleja de inmediato).
 
+## Registro automático (entrante) — preparado y APAGADO
+- Destino: aplicación web de **Google Apps Script** sobre una hoja de Google del
+  anfitrión. URL terminada en `/exec`, desplegada como *Ejecutar como: yo* +
+  *Acceso: cualquier usuario*.
+- Envío: `navigator.sendBeacon(EVENTO.registro, Blob JSON como text/plain)` —
+  el tipo `text/plain` evita la verificación previa de CORS. Respaldo: `fetch`
+  con `mode:"no-cors"` y `keepalive:true`.
+- Cuerpo: `{clave, nombre, adultos, ninos, estado, origen}`.
+- Se dispara al confirmar **y** al avisar que no asistirá, **antes** de abrir
+  WhatsApp, dentro de un `try/catch`: si falla, la confirmación sigue su curso.
+- **Hoy `EVENTO.registro` está vacío** → esta rama no existe en tiempo de
+  ejecución. Para encenderla: pegar el URL `/exec` en los tres archivos de la
+  invitación (ver proyecto `invitacion-evento`). El enlace que ya circuló NO
+  cambia; los invitados ven la versión nueva al abrirlo.
+- Transparencia: el aviso "tu respuesta queda registrada para la organización del
+  evento" se agrega por JavaScript **solo si el registro está activo**.
+
 ## Flujo de datos
 1. El invitado abre el enlace corto → redirige a GitHub Pages → carga `index.html`
    (todo incrustado: tipografías, estilos, lógica; solo pide `foto.jpg`).
-2. Llena nombre + número de adultos y niños → botón "Confirmar por WhatsApp"
-   construye el mensaje y abre `wa.me` hacia el número del anfitrión.
-3. La confirmación llega como mensaje normal de WhatsApp; no hay backend que
-   registre nada.
+2. Llena nombre + número de adultos y niños → botón "Confirmar por WhatsApp":
+   a) [si el registro está activo] manda los datos a la hoja de Google;
+   b) construye el mensaje y abre `wa.me` hacia el número del anfitrión.
+3. La confirmación llega como mensaje normal de WhatsApp. Con el registro activo,
+   además queda la fila en la hoja — **incluso si el invitado nunca envía el
+   mensaje**, que es justo lo que WhatsApp por sí solo no permite saber.
 
 ## Configuración editable
 - Todo lo personalizable vive en `index.html`, constante `EVENTO`
-  (frase, fecha, lugares/mapas y número de WhatsApp).
+  (frase, fecha, lugares/mapas, número de WhatsApp, y `registro` /
+  `registroClave` del registro automático).
