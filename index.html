@@ -358,7 +358,7 @@
       </svg>
       Confirmar por WhatsApp
     </button>
-    <p class="nota-boton">Se abrirá WhatsApp con el mensaje listo; solo tienes que enviarlo.</p>
+    <p class="nota-boton" id="nota-boton">Se abrirá WhatsApp con el mensaje listo; solo tienes que enviarlo.</p>
     <button class="no-asistire" id="btn-no-asistire" type="button">¿No podrás acompañarnos? Avísanos aquí</button>
   </section>
 </main>
@@ -384,7 +384,13 @@
         mapa:  "17.051311,-96.736430"
       }
     ],
-    whatsapp: "5219512283887"
+    whatsapp: "5219512283887",
+    /* Registro automático (opcional). Vacío = la página se comporta igual que
+       siempre, sin enviar nada. Para activarlo, pega aquí la dirección de la
+       aplicación web de Apps Script (termina en /exec): ver la carpeta
+       registro-en-linea\INSTRUCCIONES.md del proyecto invitacion-evento */
+    registro: "",
+    registroClave: "ivanna2026"
   };
 
   /* Filas de "Cómo llegar", cada una con su botón de Google Maps */
@@ -435,6 +441,37 @@
     location.href = "https://wa.me/" + EVENTO.whatsapp + "?text=" + encodeURIComponent(mensaje);
   };
 
+  /* Transparencia: el aviso solo aparece si el registro está realmente activo. */
+  if (EVENTO.registro) {
+    document.getElementById("nota-boton").textContent +=
+      " Tu respuesta queda registrada para la organización del evento.";
+  }
+
+  /* Deja constancia de la confirmación en la hoja del anfitrión.
+     Nunca debe estorbar: si falla o tarda, WhatsApp se abre igual. */
+  const registrarConfirmacion = (datos) => {
+    if (!EVENTO.registro) return;
+    try {
+      const cuerpo = JSON.stringify({
+        clave: EVENTO.registroClave,
+        nombre: datos.nombre,
+        adultos: datos.adultos,
+        ninos: datos.ninos,
+        estado: datos.estado,
+        origen: "invitacion-web"
+      });
+      const tipo = "text/plain;charset=UTF-8";
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(EVENTO.registro, new Blob([cuerpo], { type: tipo }));
+      } else {
+        fetch(EVENTO.registro, {
+          method: "POST", mode: "no-cors", keepalive: true,
+          headers: { "Content-Type": tipo }, body: cuerpo
+        }).catch(() => {});
+      }
+    } catch (e) { /* sin ruido para el invitado */ }
+  };
+
   document.getElementById("btn-confirmar").addEventListener("click", () => {
     const nombre = campoNombre.value.trim();
     if (!nombre) { avisoNombre.hidden = false; campoNombre.focus(); return; }
@@ -445,6 +482,7 @@
     const cuantos = k === 0
       ? (n === 1 ? "Asistiré solo yo (1 adulto, sin niños)." : "Asistiremos " + adultos + ", sin niños.")
       : "Asistiremos " + adultos + " y " + (k === 1 ? "1 niño" : k + " niños") + ".";
+    registrarConfirmacion({ nombre: nombre, adultos: n, ninos: k, estado: "si" });
     abrirWhatsApp(
       "Hola, soy " + nombre + ". Con mucho gusto confirmo mi asistencia " +
       EVENTO.frase + " " + EVENTO.fechaMensaje + ". " + cuantos
@@ -453,6 +491,7 @@
 
   document.getElementById("btn-no-asistire").addEventListener("click", () => {
     const nombre = campoNombre.value.trim();
+    if (nombre) registrarConfirmacion({ nombre: nombre, adultos: 0, ninos: 0, estado: "no" });
     abrirWhatsApp(
       "Hola" + (nombre ? ", soy " + nombre : "") + ". Lamentablemente no podré acompañarlos " +
       EVENTO.frase + ". ¡Muchas felicidades y gracias por la invitación!"

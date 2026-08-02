@@ -45,3 +45,15 @@ Registro fechado del proceso. Documentos en español.
   37/37 en el harness, idéntica byte a byte a este repositorio; link corto 301 correcto.
 - Estado actual: versión vigente publicada con "Traje típico istmeño" (hombres
   Guayabera, mujeres Traje regional); confirmaciones llegando al 9512283887.
+
+## 2026-08-01 — Registro automático de confirmaciones (preparado, apagado)
+- `index.html` ahora puede mandar cada confirmación a una hoja de Google (Apps
+  Script) además de abrir WhatsApp: campos `EVENTO.registro` / `EVENTO.registroClave`
+  y función `registrarConfirmacion()` con `navigator.sendBeacon`.
+- **Se publica con `registro: ""`, es decir APAGADO**: la página se comporta
+  exactamente igual que antes hasta que el usuario entregue el URL de su aplicación
+  web. Verificado con 58 asserts que sin endpoint no se envía nada y que, aun con
+  endpoint caído, WhatsApp se abre igual.
+- El aviso de transparencia al invitado solo aparece cuando el registro está activo.
+- El dashboard vive en el proyecto `invitacion-evento`
+  (`confirmaciones\dashboard-confirmaciones.html`), no aquí: no es público.
