@@ -41,3 +41,7 @@ Registro fechado del proceso. Documentos en español.
 - Cambio aplicado idéntico a los TRES archivos (este `index.html` + los dos fuente de
   `invitacion-evento`), harness de 37 asserts en verde en los tres, y verificación en
   vivo tras el push. El link enviado por WhatsApp no cambia.
+- **Verificación en vivo confirmada:** despliegue en ~10 segundos; página en vivo
+  37/37 en el harness, idéntica byte a byte a este repositorio; link corto 301 correcto.
+- Estado actual: versión vigente publicada con "Traje típico istmeño" (hombres
+  Guayabera, mujeres Traje regional); confirmaciones llegando al 9512283887.
