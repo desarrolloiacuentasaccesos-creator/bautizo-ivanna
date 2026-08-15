@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Invitación · Bautizo de Ivanna Eliette">
+<meta property="og:title" content="Invitación · Bautizo y Presentación de Ivanna Eliette">
 <meta property="og:description" content="Sábado 29 de agosto · Ceremonia 12 del día y recepción 2:30 · Abre tu invitación y confirma tu asistencia">
-<meta property="og:image" content="https://desarrolloiacuentasaccesos-creator.github.io/bautizo-ivanna/portada.png">
+<meta property="og:image" content="https://desarrolloiacuentasaccesos-creator.github.io/bautizo-ivanna/portada.png?v=2">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>">
 <title>Invitación · Ivanna Eliette Lavín Cabrera</title>
 <style>
@@ -293,6 +293,60 @@
   }
   .no-asistire:hover, .no-asistire:focus-visible { color: var(--frambuesa); }
 
+  /* --- Tarjeta de la ocasión y los padrinos ---------------------- */
+  .ocasion {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(1rem, 4.4vw, 1.2rem);
+    letter-spacing: 0.055em;
+    text-transform: uppercase;
+    line-height: 1.35;
+    color: var(--frambuesa);
+    text-wrap: balance;
+  }
+  /* La paloma lleva el selector de variación de TEXTO (U+FE0E): así se
+     dibuja monocroma y toma el dorado de la papelería en vez del emoji
+     gris. Si algún teléfono la ignora, se ve el emoji a color: no estorba. */
+  .ocasion .paloma {
+    color: var(--oro);
+    font-size: 1.15em;
+    letter-spacing: 0;
+  }
+  .ocasion-nombre {
+    margin: -0.75rem 0 0;
+    font-family: var(--script);
+    font-size: clamp(2.4rem, 12vw, 3.1rem);
+    line-height: 1.1;
+    color: var(--oro);
+  }
+
+  .padrinos { width: 100%; display: flex; flex-direction: column; gap: 1.15rem; }
+  .padrinos-rol {
+    margin: 0;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--frambuesa);
+  }
+  .padrinos-nombre {
+    margin: 0.3rem 0 0;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.15rem;
+    line-height: 1.35;
+    color: var(--tinta);
+  }
+  .dedicatoria {
+    margin: 0;
+    max-width: 20rem;
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--tinta);
+  }
+  .dedicatoria .corazon { font-size: 0.9em; }
+
   /* --- Animación de entrada ------------------------------------- */
   .revelar {
     opacity: 0;
@@ -312,10 +366,41 @@
 
 
 <main class="pagina">
-  <img class="foto revelar" style="--orden: 0" src="foto.jpg"
-       alt="Invitación al bautizo de Ivanna Eliette Lavín Cabrera. Sábado 29 de agosto. Ceremonia religiosa a las 12 del día en la Parroquia de Santo Tomás, Xochimilco. Recepción a las 2:30 en el Salón la Ermita, Carretera Monte Albán #126, San Juan Chapultepec. Papás: Hilda Cabrera Domínguez y Fernando Lavín Duarte. Padrinos: Beatriz Hernández Suárez y Juan Carlos Ruiz Ayala." />
+  <img class="foto revelar" style="--orden: 0" src="foto.jpg?v=2"
+       alt="Invitación al bautizo y presentación de Ivanna Eliette Lavín Cabrera. Sábado 29 de agosto. Ceremonia religiosa a las 12 del día en la Parroquia de Santo Tomás, Xochimilco. Recepción a las 2:30 en el Salón la Ermita, Carretera Monte Albán #126, San Juan Chapultepec. Papás: Hilda Cabrera Domínguez y Fernando Lavín Duarte. Padrinos de bautizo: Beatriz Hernández Suárez y Juan Carlos Ruiz Ayala. Madrina de presentación: Reyna Pérez Guzmán." />
 
   <section class="panel revelar" style="--orden: 1">
+    <p class="ocasion">
+      <span class="paloma" aria-hidden="true">&#x1F54A;&#xFE0E;</span>
+      Bautizo y Presentación
+      <span class="paloma" aria-hidden="true">&#x1F54A;&#xFE0E;</span>
+    </p>
+    <p class="ocasion-nombre">Ivanna Eliette</p>
+
+    <div class="separador" aria-hidden="true"><span class="diamante"></span></div>
+
+    <h2>Padrinos</h2>
+    <div class="padrinos">
+      <div>
+        <p class="padrinos-rol">Bautizo</p>
+        <p class="padrinos-nombre">Beatriz Hernández Suárez</p>
+        <p class="padrinos-nombre">Juan Carlos Ruiz Ayala</p>
+      </div>
+      <div>
+        <p class="padrinos-rol">Presentación</p>
+        <p class="padrinos-nombre">Reyna Pérez Guzmán</p>
+      </div>
+    </div>
+
+    <div class="separador" aria-hidden="true"><span class="diamante"></span></div>
+
+    <p class="dedicatoria">
+      Con todo nuestro cariño los invitamos a celebrar el bautizo de nuestra hija
+      Ivanna Eliette Lavín Cabrera <span class="corazon" aria-hidden="true">💗</span>
+    </p>
+  </section>
+
+  <section class="panel revelar" style="--orden: 2">
     <h2>¿Cómo llegar?</h2>
     <div class="llegar" id="llegar"></div>
 
@@ -370,7 +455,7 @@
      país y sin signos. México celular: 521 + 10 dígitos.
      ============================================================== */
   const EVENTO = {
-    frase:        "al bautizo de Ivanna Eliette",
+    frase:        "al bautizo y presentación de Ivanna Eliette",
     fechaMensaje: "el sábado 29 de agosto",
     momentos: [
       {

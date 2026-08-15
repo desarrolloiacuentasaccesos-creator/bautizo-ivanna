@@ -57,3 +57,51 @@ Registro fechado del proceso. Documentos en español.
 - El aviso de transparencia al invitado solo aparece cuando el registro está activo.
 - El dashboard vive en el proyecto `invitacion-evento`
   (`confirmaciones\dashboard-confirmaciones.html`), no aquí: no es público.
+
+## 2026-08-15 (sábado) — Padrinos completos: se agrega la madrina de presentación
+- **El error:** la fotografía de la papelería (`foto.jpg`) solo nombra a los padrinos de
+  bautizo. Faltaba la madrina de **presentación** y faltaba decir que la celebración es
+  **bautizo Y presentación**. La imagen impresa no se puede reescribir sin dañar el
+  diseño bordado, así que la corrección se hace **en la página**.
+- **Lo que se agregó:** una tarjeta nueva justo debajo de la foto, con la misma paleta
+  (marfil / oro / frambuesa) y las mismas tipografías (Great Vibes + Cormorant), que dice:
+  - "Bautizo y Presentación · Ivanna Eliette"
+  - Padrinos — **Bautizo:** Beatriz Hernández Suárez y Juan Carlos Ruiz Ayala.
+    **Presentación:** Reyna Pérez Guzmán.
+  - "Con todo nuestro cariño los invitamos a celebrar el bautizo de nuestra hija
+    Ivanna Eliette Lavín Cabrera 💗"
+- **Otros ajustes del mismo cambio:**
+  - Texto alterno de la foto: ahora distingue padrinos de bautizo y madrina de presentación.
+  - `og:title` (vista previa de WhatsApp): "Invitación · Bautizo y Presentación de Ivanna Eliette".
+  - `EVENTO.frase`: el mensaje de confirmación ahora dice "al bautizo **y presentación** de
+    Ivanna Eliette". Sin emojis en ese texto (wa.me los corrompe en `?text=`).
+- **Detalle de diseño:** la paloma se escribe con el selector de variación de texto
+  (`&#x1F54A;&#xFE0E;`) para que salga monocroma en dorado y no como emoji gris deslavado.
+  El corazón sí va a color porque combina con la paleta.
+- **Verificación:** harness nuevo `_harness\probar_invitacion.py` (Playwright + Chromium),
+  17 comprobaciones en verde: textos obligatorios, carga de la foto, texto alterno, mensaje
+  de WhatsApp, los 2 botones de mapas y ausencia de barra horizontal a 320/390/430 px.
+  Capturas en `_harness\capturas\`.
+- **Sincronización:** el mismo cambio se aplicó a los dos archivos fuente del proyecto
+  `C:\Proyectos\invitacion-evento` (`invitacion.html` e `invitacion.template.html`) y se
+  verificó ahí también. El `og:title` no existe en esos dos archivos, por eso ese ajuste
+  solo va en el `index.html` publicado.
+- Sistema de diseño: no se generó uno nuevo. La fuente de verdad visual sigue siendo la
+  papelería fotografiada y los tokens ya definidos en el `<style>` de `index.html`; la
+  habilidad `ui-ux-pro-max` confirmó el par tipográfico (Great Vibes + Cormorant) y la
+  familia de color rosa+oro que ya se usaban.
+
+### Mismo día — la papelería corregida sustituye a la anterior
+- El usuario ya tenía la imagen rehecha (`Downloads\Invitacion_Ivanna_Eliette_CORREGIDA.png`,
+  editada en otra sesión). Ya trae **"Acompáñanos a celebrar el Bautizo y Presentación"** y
+  la tarjeta chica dice **"Padrinos de Bautizo"** (Beatriz y Juan Carlos) y **"Madrina de
+  Presentación"** (Reyna Pérez Guzmán). Con eso, la tarjeta HTML deja de ser una corrección
+  y queda como refuerzo legible: en el teléfono la letra de la tarjeta fotografiada es diminuta.
+- `foto.jpg` se regeneró desde ese PNG (JPEG progresivo, calidad 88 → 393 KB en vez de los
+  2.3 MB del PNG: importa porque la invitación se abre con datos móviles). 1159×1356 px.
+- `portada.png` (la vista previa que arma WhatsApp) se rehizo con el **mismo encuadre** que la
+  anterior, tomado ahora de la imagen corregida; antes decía "el Bautizo de nuestra Hija" a secas.
+- **Rompe-caché:** `foto.jpg?v=2` y `og:image ...portada.png?v=2`, para que a quien ya abrió
+  la invitación no le siga apareciendo la imagen vieja guardada en su teléfono.
+- El archivo original queda recuperable en el historial de git (no se guardó copia extra
+  para no ensuciar el repositorio, que es público).
